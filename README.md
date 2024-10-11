@@ -17,10 +17,12 @@ This is a Python-based desktop application built using Tkinter to send personali
 ## Installation
 1. Ensure Python 3.x is installed on your system.
 2. Install the required dependencies by running the following:
+
    ```
    pip install pandas smtplib email_validator
    ```
-3. Download the script and place it in your working directory.
+
+4. Download the script and place it in your working directory.
 
 ## How to Use
 1. **Run the Application:**
