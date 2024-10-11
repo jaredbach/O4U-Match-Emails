@@ -74,4 +74,4 @@ The CSV file should include the following columns:
 - The email content is basic and does not support HTML formatting.
 
 ## Author
-Jared
+Jared Bach
