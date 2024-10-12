@@ -24,8 +24,8 @@ class EmailSenderApp:
         self.smtp_server = "smtp.gmail.com"
         self.smtp_port = 587
 
-        self.body_template = """Hey {MentorFirstName} and {MenteeFistName}!\n\nIn preparation for program kickoff, we are so excited to formally introduce you to your Summer 2024 O4U mentorship program pairing!\n\nMentor: {MentorFirstName} {MentorLastName}, {JobTitle} at {PlaceOfWork}\nMentee: {MenteeFistName} {MenteeLastName}, studying {Major} at {University}\n\nPlease feel free to use this email thread to introduce yourselves to each other before kickoff on Wednesday, June 12th at 7:30pm EST -- and get your first meeting in the books! Remember that we expect mentors and mentees to meet twice a month. \n\nYou will also be receiving the training materials, including the discussion guide and the recording of last week's sessions shortly. Please review if you were not able to attend the trainings. Please also keep these dates blocked on your calendar:\n\nMidway Event: Wednesday, July 17th @ 7:30pm ET\nClosing Event: Wednesday, August 21st @ 7:30pm ET\n\nIf you don't hear back from your mentor / mentee within a week, feel free to reach out to mentoring@outforundergrad.org. \n\nBest,\nJared"""
-        self.email_subject = "Summer 2024 O4U Mentorship Program Pairing"
+        self.body_template = """Hey {MentorFirstName} and {MenteeFistName}!\n\nIn preparation for program kickoff, we are so excited to formally introduce you to your Spring 2025 O4U mentorship program pairing!\n\nMentor: {MentorFirstName} {MentorLastName}, {JobTitle} at {PlaceOfWork}\nMentee: {MenteeFistName} {MenteeLastName}, studying {Major} at {University}\n\nPlease feel free to use this email thread to introduce yourselves to each other before kickoff on Wednesday, [Put Date Here] at 7:30pm EST -- and get your first meeting in the books! Remember that we expect mentors and mentees to meet twice a month. \n\nYou will also be receiving the training materials, including the discussion guide and the recording of last week's sessions shortly. Please review if you were not able to attend the trainings. Please also keep these dates blocked on your calendar:\n\nMidway Event: Wednesday,[Put Date Here] @ 7:30pm ET\nClosing Event: Wednesday, [Put Date Here] @ 7:30pm ET\n\nIf you don't hear back from your mentor / mentee within a week, feel free to reach out to mentoring@outforundergrad.org. \n\nBest,\nJared"""
+        self.email_subject = "Spring 2025 O4U Mentorship Program Pairing"
 
         # Title Label
         self.title_label = tk.Label(root, text="O4U Match Email Sender", font=("Helvetica", 16, "bold"))
@@ -244,8 +244,8 @@ class EmailSenderApp:
             # Prepare email
             msg = MIMEMultipart()
             msg['From'] = self.sender_email
-            msg['To'] = mentor_email
-            msg['Cc'] = mentee_email
+            msg['To'] = f"{mentor_email}, {mentee_email}"
+            msg['Cc'] = self.cc_entry.get()  # CC field from the GUI
             msg['Subject'] = self.subject_entry.get()
 
             body = self.body_template.format(
@@ -266,7 +266,7 @@ class EmailSenderApp:
                 with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
                     server.starttls()
                     server.login(self.sender_email, self.sender_password)
-                    server.sendmail(self.sender_email, [mentor_email, mentee_email], msg.as_string())
+                    server.sendmail(self.sender_email, [mentor_email, mentee_email, self.cc_entry.get()], msg.as_string())
                     log_message = f"Email sent successfully to: {mentor_email}, {mentee_email}\n"
                     self.log_text.insert(tk.END, log_message)
                     self.log_text.yview(tk.END)
