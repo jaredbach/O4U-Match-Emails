@@ -24,15 +24,15 @@ class EmailSenderApp:
         self.smtp_server = "smtp.gmail.com"
         self.smtp_port = 587
 
-        self.body_template = """Hey {MentorFirstName} and {MenteeFistName}!\n\nIn preparation for program kickoff, we are so excited to formally introduce you to your Spring 2025 O4U mentorship program pairing!\n\nMentor: {MentorFirstName} {MentorLastName}, {JobTitle} at {PlaceOfWork}\nMentee: {MenteeFistName} {MenteeLastName}, studying {Major} at {University}\n\nPlease feel free to use this email thread to introduce yourselves to each other before kickoff on Wednesday, [Put Date Here] at 7:30pm EST -- and get your first meeting in the books! Remember that we expect mentors and mentees to meet twice a month. \n\nYou will also be receiving the training materials, including the discussion guide and the recording of last week's sessions shortly. Please review if you were not able to attend the trainings. Please also keep these dates blocked on your calendar:\n\nMidway Event: Wednesday,[Put Date Here] @ 7:30pm ET\nClosing Event: Wednesday, [Put Date Here] @ 7:30pm ET\n\nIf you don't hear back from your mentor / mentee within a week, feel free to reach out to mentoring@outforundergrad.org. \n\nBest,\nJared"""
-        self.email_subject = "Spring 2025 O4U Mentorship Program Pairing"
+        self.body_template = """Hey {MentorFirstName} and {MenteeFistName}!\n\nIn preparation for program kickoff, we are so excited to formally introduce you to your Summer 2025 O4U mentorship program pairing!\n\nMentor: {MentorFirstName} {MentorLastName}, {JobTitle} at {PlaceOfWork}\nMentee: {MenteeFistName} {MenteeLastName}, studying {Major} at {University}\n\nPlease feel free to use this email thread to introduce yourselves to each other before kickoff on Wednesday, [Put Date Here] at 7:30pm EST -- and get your first meeting in the books! Remember that we expect mentors and mentees to meet twice a month. \n\nYou will also be receiving the training materials, including the discussion guide and the recording of last week's sessions shortly. Please review if you were not able to attend the trainings. Please also keep these dates blocked on your calendar:\n\nMidway Event: Wednesday,[Put Date Here] @ 7:30pm ET\nClosing Event: Wednesday, [Put Date Here] @ 7:30pm ET\n\nIf you don't hear back from your mentor / mentee within a week, feel free to reach out to mentoring@outforundergrad.org. \n\nBest,\nJared"""
+        self.email_subject = "Summer 2025 O4U Mentorship Program Pairing"
 
         # Title Label
         self.title_label = tk.Label(root, text="O4U Match Email Sender", font=("Helvetica", 16, "bold"))
         self.title_label.pack(pady=10)
 
         # Upload Button
-        self.upload_btn = tk.Button(root, text="Upload CSV", command=self.upload_csv, height=2, width=20, bg="#2196F3", fg="white", font=("Helvetica", 12, "bold"))
+        self.upload_btn = tk.Button(root, text="Upload CSV", command=self.upload_csv)
         self.upload_btn.pack(pady=10)
 
         # Email Subject
@@ -69,23 +69,23 @@ class EmailSenderApp:
         self.pagination_frame = tk.Frame(root)
         self.pagination_frame.pack(pady=10)
 
-        self.prev_btn = tk.Button(self.pagination_frame, text="<< Prev", command=self.show_prev_page, height=2, width=10, bg="#FFC107", fg="white", font=("Helvetica", 12, "bold"))
+        self.prev_btn = tk.Button(self.pagination_frame, text="<< Prev", command=self.show_prev_page)
         self.prev_btn.grid(row=0, column=0, padx=5)
 
-        self.page_label = tk.Label(self.pagination_frame, text="Page 0", font=("Helvetica", 12, "bold"))
+        self.page_label = tk.Label(self.pagination_frame, text="Page 0")
         self.page_label.grid(row=0, column=1, padx=5)
 
-        self.next_btn = tk.Button(self.pagination_frame, text="Next >>", command=self.show_next_page, height=2, width=10, bg="#FFC107", fg="white", font=("Helvetica", 12, "bold"))
+        self.next_btn = tk.Button(self.pagination_frame, text="Next >>", command=self.show_next_page)
         self.next_btn.grid(row=0, column=2, padx=5)
 
         # Buttons to Edit Body, Preview, and Send
-        self.edit_body_btn = tk.Button(root, text="Edit Email Body", command=self.edit_email_body, state=tk.DISABLED, height=2, width=20, bg="#4CAF50", fg="white", font=("Helvetica", 12, "bold"))
+        self.edit_body_btn = tk.Button(root, text="Edit Email Body", command=self.edit_email_body, state=tk.DISABLED)
         self.edit_body_btn.pack(pady=10)
 
-        self.preview_btn = tk.Button(root, text="Preview Email", command=self.preview_email, state=tk.DISABLED, height=2, width=20, bg="#4CAF50", fg="white", font=("Helvetica", 12, "bold"))
+        self.preview_btn = tk.Button(root, text="Preview Email", command=self.preview_email, state=tk.DISABLED)
         self.preview_btn.pack(pady=10)
 
-        self.send_btn = tk.Button(root, text="Send Emails", command=self.prompt_for_credentials, state=tk.DISABLED, height=2, width=20, bg="#F44336", fg="white", font=("Helvetica", 12, "bold"))
+        self.send_btn = tk.Button(root, text="Send Emails", command=self.prompt_for_credentials, state=tk.DISABLED)
         self.send_btn.pack(pady=10)
 
     def prompt_for_credentials(self):
@@ -169,7 +169,7 @@ class EmailSenderApp:
             self.body_template = text_widget.get("1.0", tk.END).strip()
             edit_window.destroy()
 
-        save_button = tk.Button(edit_window, text="Save", command=save_body, height=2, width=10, bg="#4CAF50", fg="white", font=("Helvetica", 12, "bold"))
+        save_button = tk.Button(edit_window, text="Save", command=save_body)
         save_button.pack(pady=10)
 
     def preview_email(self):
@@ -193,10 +193,10 @@ class EmailSenderApp:
         preview_controls = tk.Frame(preview_window)
         preview_controls.pack(pady=10)
 
-        prev_btn = tk.Button(preview_controls, text="<< Prev", command=lambda: self.show_email_preview(preview_text, max(self.current_preview_index - 1, 0)), height=2, width=10, bg="#FFC107", fg="white", font=("Helvetica", 12, "bold"))
+        prev_btn = tk.Button(preview_controls, text="<< Prev", command=lambda: self.show_email_preview(preview_text, max(self.current_preview_index - 1, 0)))
         prev_btn.pack(side=tk.LEFT, padx=5)
 
-        next_btn = tk.Button(preview_controls, text="Next >>", command=lambda: self.show_email_preview(preview_text, min(self.current_preview_index + 1, len(self.df) - 1)), height=2, width=10, bg="#FFC107", fg="white", font=("Helvetica", 12, "bold"))
+        next_btn = tk.Button(preview_controls, text="Next >>", command=lambda: self.show_email_preview(preview_text, min(self.current_preview_index + 1, len(self.df) - 1)))
         next_btn.pack(side=tk.LEFT, padx=5)
 
     def show_email_preview(self, text_widget, index):
