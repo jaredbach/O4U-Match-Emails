@@ -29,11 +29,18 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    - name: Set up virtual display
+    - name: Set up virtual display with Xvfb
       run: |
+        sudo apt-get update
         sudo apt-get install -y xvfb
+        # Start Xvfb in the background (it simulates a graphical display)
         Xvfb :99 -screen 0 1280x1024x24 &
+
+        # Export the DISPLAY variable to use the virtual display
         export DISPLAY=:99
 
     - name: Run app.py
-      run: python app.py
+      run: |
+        # Ensure that DISPLAY is correctly set before running the Tkinter application
+        echo $DISPLAY
+        python app.py
