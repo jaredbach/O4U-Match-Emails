@@ -37,11 +37,12 @@ jobs:
         Xvfb :99 -screen 0 1280x1024x24 &
         # Export DISPLAY variable for the current session
         export DISPLAY=:99
-        echo $DISPLAY  # Just to check the value of DISPLAY
+        echo "DISPLAY is set to: $DISPLAY"  # To verify that DISPLAY is set
 
     - name: Run app.py
+      env:
+        DISPLAY: ":99"  # Ensure DISPLAY is available to the Python script
       run: |
-        # Ensure that DISPLAY is correctly set before running the Tkinter application
-        echo "DISPLAY is set to: $DISPLAY"
+        echo "Running app.py with DISPLAY set to: $DISPLAY"
         python app.py
 
