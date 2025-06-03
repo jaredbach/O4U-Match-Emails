@@ -1,1 +1,1 @@
-MentorID,StudentID,MentorFirstName,MentorLastName,MentorEmail,PlaceOfWork,JobTitle,MenteeFistName,MenteeLastName,MenteeEmail,University,Major
+MentorID,StudentID,MentorFirstName,MentorLastName,MentorEmail,PlaceOfWork,JobTitle,MenteeFirstName,MenteeLastName,MenteeEmail,University,Major
