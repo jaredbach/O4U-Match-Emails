@@ -19,7 +19,7 @@ This is a Python-based desktop application built using Tkinter to send personali
 2. Install the required dependencies by running the following:
 
    ```
-   pip install pandas smtplib email_validator
+   pip install -r requirements.txt
    ```
 
 4. Download the script and place it in your working directory.
@@ -28,7 +28,7 @@ This is a Python-based desktop application built using Tkinter to send personali
 1. **Run the Application:**
    Run the script in a terminal using:
    ```
-   python email_sender_app.py
+   python app.py
    ```
 
 2. **Upload CSV File:**
@@ -69,8 +69,7 @@ The CSV file should include the following columns:
 - A log file (`email_send_log.txt`) and a CSV of failed rows (`failed_emails.csv`) are generated for your records.
 
 ## Known Limitations
-- Only supports Gmail SMTP server (`smtp.gmail.com`).
-- Requires enabling less secure apps in your Gmail account settings.
+- Uses a Google API token
 - The email content is basic and does not support HTML formatting.
 
 ## Author
